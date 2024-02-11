@@ -1,8 +1,12 @@
-import requests
+#import requests
 
-class Account :
+class User :
     def __init__(self):
-        pass
+        self.loggedIn = False
 
-    def login(self,passWord,userName):
-        pass
+    # def login(self, username, password) -> bool:
+    def login(self, loggedIn=True):
+        self.loggedIn = loggedIn
+        self.name = "Sucre du zizi de SEB"
+        self.id = 69
+        self.coins = 3141592

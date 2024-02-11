@@ -1,6 +1,9 @@
 import pygame
-from random import randint
+import account
+# from pygame_textinput import TextInput
 
+pygame.font.init()
+font = pygame.font.Font(None, 25)
 running = True
 sideMenu = False
 screenSize = (400,750)
@@ -14,6 +17,8 @@ subSideMenu = pygame.Surface(screenSize)
 subSideMenu.set_alpha(80)
 sideMenuSurface = pygame.Surface((screenSize[0] - 100, screenSize[1]))
 sideMenuSurface.fill((0,0,255))
+userTest = account.User()
+
 while running :
 
     for event in pygame.event.get():
@@ -22,11 +27,18 @@ while running :
         if event.type == pygame.KEYDOWN :
             if event.key == pygame.K_b:
                 sideMenu = not sideMenu
-
-    screen.blit(mainSurface, mainRect)
-    if sideMenu :
-        screen.blit(subSideMenu, mainRect)
-        screen.blit(sideMenuSurface, (0,0))
+    userTest.login()
+    if userTest.loggedIn:
+        textWelcome = font.render('Bienvenue ' + userTest.name, True, (0, 0, 0) )
+        textWelcomeRect = textWelcome.get_rect()
+        textWelcomeRect.center = (screenSize[0] // 2, textWelcomeRect[3] // 2)
+        mainSurface.blit(textWelcome, textWelcomeRect)
+        screen.blit(mainSurface, mainRect)
+        if sideMenu :
+            screen.blit(subSideMenu, mainRect)
+            screen.blit(sideMenuSurface, (0,0))
+        else:
+            pass
 
 
     pygame.display.flip()
