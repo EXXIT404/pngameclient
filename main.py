@@ -1,6 +1,6 @@
 import pygame
 import account
-# from pygame_textinput import TextInput
+#from pygame_textinput import TextInput
 
 pygame.font.init()
 font = pygame.font.Font(None, 25)
@@ -18,6 +18,13 @@ subSideMenu.set_alpha(80)
 sideMenuSurface = pygame.Surface((screenSize[0] - 100, screenSize[1]))
 sideMenuSurface.fill((0,0,255))
 userTest = account.User()
+loginMenuSUrface = pygame.Surface(screenSize)
+loginMenuSUrface.fill((0,255,0))
+loginMenuSUrfaceRect = loginMenuSUrface.get_rect()
+loginMenuSUrfaceRect.center = (screenSize[0]//2 , screenSize[1]//2)
+#usernameInput = TextInput()
+#passwordInput = TextInput()
+
 
 while running :
 
@@ -35,10 +42,20 @@ while running :
         mainSurface.blit(textWelcome, textWelcomeRect)
         screen.blit(mainSurface, mainRect)
         if sideMenu :
+            sideText = font.render('menu depliant' , True ,(0, 0, 0) )
+            sideTextRect = sideText.get_rect()
+            sideTextRect.center = ((screenSize[0] - 100) // 2, sideTextRect[3] // 2)
+            sideMenuSurface.blit(sideText , sideTextRect)
             screen.blit(subSideMenu, mainRect)
             screen.blit(sideMenuSurface, (0,0))
-        else:
-            pass
+    else:
+        loginMessage = font.render('login' , True , (0,0,0))
+        loginMessageRect = loginMessage.get_rect()
+        loginMessageRect.center = (screenSize[0] // 2, loginMessageRect[3] // 2 + 100)
+        loginMenuSUrface.blit(loginMessage, loginMessageRect)
+        screen.blit(loginMenuSUrface, loginMenuSUrfaceRect)
+
+
 
 
     pygame.display.flip()

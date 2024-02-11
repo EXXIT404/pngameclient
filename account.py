@@ -7,6 +7,6 @@ class User :
     # def login(self, username, password) -> bool:
     def login(self, loggedIn=True):
         self.loggedIn = loggedIn
-        self.name = "Sucre du zizi de SEB"
+        self.name = "test"
         self.id = 69
         self.coins = 3141592
